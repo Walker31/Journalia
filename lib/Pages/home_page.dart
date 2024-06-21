@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'feed_page.dart';
+import 'Feed/feed_page.dart';
 
 class HomePage extends StatelessWidget {
   final List<String> areas = ['Area 1', 'Area 2', 'Area 3'];

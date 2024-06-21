@@ -12,6 +12,7 @@ class GoogleSignInHelper {
   Future<void> signInWithGoogle(BuildContext context) async {
     try {
       GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      if (!context.mounted) return;
       if (googleUser != null) {
         // Handle successful sign-in
         logger.d('Google Sign-In successful. User: ${googleUser.displayName}');

@@ -1,8 +1,17 @@
 class Article {
-  final String image;
+  final String title;
   final String author;
-  final String area;
   final String content;
+  final int upVotes;
+  final int downVotes;
+  final List<String> comments;
 
-  Article({required this.image, required this.author, required this.area, required this.content});
+  Article({
+    required this.title,
+    required this.author,
+    required this.content,
+    required this.upVotes,
+    required this.downVotes,
+    required this.comments,
+  });
 }

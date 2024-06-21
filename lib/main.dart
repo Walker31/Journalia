@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:journalia/Pages/feed_page.dart';
+import 'package:journalia/Pages/Feed/feed_page.dart';
 import 'package:journalia/user_details.dart';
 import 'package:provider/provider.dart';
 
