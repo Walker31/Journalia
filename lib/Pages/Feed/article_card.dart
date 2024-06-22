@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../colors.dart';
-import '../../models/article.dart';
+import '../../Models/article.dart';
 
 class ArticleCard extends StatefulWidget {
   final Article article;
@@ -78,6 +78,8 @@ class ArticleCardState extends State<ArticleCard> {
                 fontWeight: FontWeight.bold,
                 color: textColor,
               ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
             ),
             if (widget.article.author.isNotEmpty)
               Padding(

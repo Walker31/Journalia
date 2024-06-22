@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:journalia/Pages/Login/login_page.dart';
-import 'package:journalia/user_details.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
+import 'package:journalia/providers/user_provider.dart'; // Ensure the correct import path
 
 class GoogleSignInHelper {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
@@ -17,10 +17,7 @@ class GoogleSignInHelper {
         // Handle successful sign-in
         logger.d('Google Sign-In successful. User: ${googleUser.displayName}');
         // Set user details in the provider and navigate to home
-        Provider.of<UserProvider>(context, listen: false).setUserDetails(
-          googleUser.displayName ?? '',
-          '',
-        );
+        Provider.of<UsersProvider>(context, listen: false).setUserDetails(googleUser.displayName??'',googleUser.email);
         Navigator.push(
           context,
           MaterialPageRoute(

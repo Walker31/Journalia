@@ -28,6 +28,20 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
+  fonts:
+    - family: Caveat
+      fonts:
+      - asset: assets/fonts/Caveat-Regular.ttf
+      - asset: assets/fonts/Caveat-Bold.ttf
+      - asset: assets/fonts/Caveat-Medium.ttf
+      - asset: assets/fonts/Caveat-SemiBold.ttf
+      - asset: assets/fonts/Inter-Black.ttf
+      - asset: assets/fonts/Inter-Light.ttf
+      - asset: assets/fonts/Inter-Bold.ttf
+      - asset: assets/fonts/Inter-Regular.ttf
+      - asset: assets/fonts/Inter-Medium.ttf
+      - asset: assets/fonts/Inter-Thin.ttf
+      - asset: assets/fonts/Inter-SemiBold.ttf
 
   assets:
     - assets/

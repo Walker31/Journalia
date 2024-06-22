@@ -15,3 +15,22 @@ class Article {
     required this.comments,
   });
 }
+
+class Articles {
+  final int articleId;
+  final int topicId;
+  final String writerId;
+  final String imageUrl;
+  final String content;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+
+  Articles(
+      {required this.articleId,
+      required this.content,
+      required this.createdAt,
+      required this.imageUrl,
+      required this.topicId,
+      required this.updatedAt,
+      required this.writerId});
+}

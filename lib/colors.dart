@@ -17,3 +17,4 @@ const Color cardColor = Color(0xFF004D40);
 const Color textColor = Colors.white;
 const Color accentColor = Color(0xFF80CBC4);
 
+  
