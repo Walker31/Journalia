@@ -2,20 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:journalia/Pages/Feed/feed_page.dart';
 import 'package:journalia/Pages/Home/home_page.dart'; // Import the sample page
 import 'package:journalia/Pages/Home/samle.dart';
-import 'package:journalia/custom_curve.dart';
 import 'package:journalia/providers/article_provider.dart';
 import 'package:provider/provider.dart';
-
 import 'Providers/topic_provider.dart';
 import 'Providers/user_provider.dart';
 import 'Providers/vote_provider.dart';
 
 void main() {
-  runApp(const MaterialApp(
-    home: SineWaveWidget(),
-  ));
+  runApp(const MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

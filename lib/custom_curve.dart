@@ -1,76 +1,126 @@
 import 'dart:math';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; // Corrected import
 
-class SineWavePainter extends CustomPainter {
-  final double amplitude;
-  final double wavelength;
-  final double phase;
-  final double dashWidth;
-  final double dashSpace;
-
-  SineWavePainter({
-    this.amplitude = 50,
-    this.wavelength = 100,
-    this.phase = 0,
-    this.dashWidth = 5,
-    this.dashSpace = 5,
-  });
+class InfiniteSineCurvePage extends StatefulWidget {
+  const InfiniteSineCurvePage({super.key});
 
   @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.blue
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 2.0;
-
-    // Calculate number of dashes needed
-    final numDashes = (size.width / (dashWidth + dashSpace)).ceil();
-
-    final path = Path();
-
-    // Starting point for the path
-    path.moveTo(0, size.height / 2);
-
-    // Draw the sine wave for one period with dashes
-    for (int i = 0; i < numDashes; i++) {
-      double x = i * (dashWidth + dashSpace);
-      if (x > size.width) break; // Stop drawing if exceeds width
-
-      final y = size.height / 2 + amplitude * sin((x / wavelength) * 2 * pi + phase);
-      path.lineTo(x, y);
-    }
-
-    // Draw the path on the canvas
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
-  }
+  State<InfiniteSineCurvePage> createState() => _InfiniteSineCurvePageState();
 }
 
-class SineWaveWidget extends StatelessWidget {
-  const SineWaveWidget({super.key});
+class _InfiniteSineCurvePageState extends State<InfiniteSineCurvePage> {
+  final _scrollController = ScrollController();
+  double _currentOffset = 0.0;
+  final List<double> _offsets = [0.0]; // List to store offsets for each segment
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent) {
+      // Load more data (update _currentOffset and add to _offsets)
+      setState(() {
+        _currentOffset += 200; // Adjust increment as needed
+        _offsets.add(_currentOffset);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('One Period of Sine Wave with Dashed Line'),
+        title: const Text('Infinite Sine Curve'),
       ),
-      body: Center(
-        child: CustomPaint(
-          size: Size(MediaQuery.of(context).size.width, 200),
-          painter: SineWavePainter(
-            amplitude: 50,
-            wavelength: MediaQuery.of(context).size.width, // Adjust wavelength to fit one period
-            phase: 0,
-            dashWidth: 5,
-            dashSpace: 5,
-          ),
+      body: CustomScrollView(
+        controller: _scrollController,
+        slivers: [
+          for (final offset in _offsets) // Efficiently iterate over offsets
+            SliverPersistentHeader(
+              delegate: _SineCurveHeader(offset: offset),
+              pinned: true,
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SineCurveHeader extends SliverPersistentHeaderDelegate {
+  final double offset;
+
+  const _SineCurveHeader({required this.offset});
+
+  @override
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return SizedBox(
+      height: 200,
+      child: CustomPaint(
+        painter: SineCurvePainter(
+          amplitude: 50,
+          frequency: 1,
+          phase: offset,
         ),
       ),
     );
+  }
+
+  @override
+  double get maxExtent => 200;
+
+  @override
+  double get minExtent => 200;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return true;
+  }
+}
+
+class SineCurvePainter extends CustomPainter {
+  final double amplitude;
+  final double frequency;
+  final double phase;
+
+  SineCurvePainter({this.amplitude = 50, this.frequency = 1, this.phase = 0});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    var paint = Paint()
+      ..color = Colors.lightBlue
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2;
+
+    var path = Path();
+
+    // Calculate points for sine wave
+    for (double x = 0; x <= size.width; x++) {
+      double y = size.height / 2 - amplitude * sin((x / size.width * 2 * pi * frequency) + phase);
+      if (x == 0) {
+        path.moveTo(x, y);
+      } else {
+        path.lineTo(x, y);
+      }
+    }
+
+    // Draw path for sine wave
+    canvas.drawPath(
+      path,
+      paint,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
   }
 }
