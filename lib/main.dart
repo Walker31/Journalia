@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData.dark(),
         debugShowCheckedModeBanner: false,
-        initialRoute: '/login', // Specify initial route
+        initialRoute: '/home', // Specify initial route
         routes: {
           '/login': (context) => const Login(),
           '/home': (context) => const HomePage(),

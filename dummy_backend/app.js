@@ -5,8 +5,10 @@ const http = require('http');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const Sequelize = require('sequelize');
+const oauthApp = require('./oauth');
 const app = express();
 const port = process.env.PORT || 3000;
+
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -58,7 +60,15 @@ sequelize.sync({ force: false }).then(() => {
   });
 });
 
+app.use(session({
+  secret: sessionSecret,
+  resave: false,
+  saveUninitialized: true
+}));
+
 // Routes
+app.use('/auth', authRoutes);
+
 
 // Route to fetch articles by topic ID
 app.get('/articles', async (req, res) => {
