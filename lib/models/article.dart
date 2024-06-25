@@ -1,21 +1,3 @@
-class Article {
-  final String title;
-  final String author;
-  final String content;
-  final int upVotes;
-  final int downVotes;
-  final List<String> comments;
-
-  Article({
-    required this.title,
-    required this.author,
-    required this.content,
-    required this.upVotes,
-    required this.downVotes,
-    required this.comments,
-  });
-}
-
 class Articles {
   final int articleId;
   final int topicId;
@@ -25,12 +7,25 @@ class Articles {
   final DateTime createdAt;
   final DateTime updatedAt;
 
-  Articles(
-      {required this.articleId,
-      required this.content,
-      required this.createdAt,
-      required this.imageUrl,
-      required this.topicId,
-      required this.updatedAt,
-      required this.writerId});
+  Articles({
+    required this.articleId,
+    required this.topicId,
+    required this.writerId,
+    required this.imageUrl,
+    required this.content,
+    required this.createdAt,
+    required this.updatedAt,
+  });
+
+  factory Articles.fromJson(Map<String, dynamic> json) {
+    return Articles(
+      articleId: json['articleId'],
+      topicId: json['topicId'],
+      writerId: json['writerId'],
+      imageUrl: json['imageUrl'],
+      content: json['content'],
+      createdAt: DateTime.parse(json['createdAt']),
+      updatedAt: DateTime.parse(json['updatedAt']),
+    );
+  }
 }

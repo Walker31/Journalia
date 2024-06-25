@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:journalia/Pages/Feed/feed_page.dart';
 import 'package:journalia/Pages/Home/home_page.dart'; // Import the sample page
 import 'package:journalia/Pages/Home/samle.dart';
+import 'package:journalia/Pages/Login/login_page.dart';
 import 'package:journalia/providers/article_provider.dart';
 import 'package:provider/provider.dart';
 import 'Providers/topic_provider.dart';
@@ -28,8 +29,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData.dark(),
         debugShowCheckedModeBanner: false,
-        initialRoute: '/home', // Specify initial route
+        initialRoute: '/login', // Specify initial route
         routes: {
+          '/login': (context) => const Login(),
           '/home': (context) => const HomePage(),
           '/feed': (context) => const FeedPage(),
           '/sample': (context) => const Page1() // Add the sample page route

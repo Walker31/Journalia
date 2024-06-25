@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:journalia/Models/article.dart';
+
+import '../Models/article_box.dart';
 
 class ArticleProvider extends ChangeNotifier {
-  List<Article> _articles = []; // Initial list of articles
+  List<ArticleBox> _articles = []; // Initial list of articles
 
   // Method to fetch articles (replace with actual data fetch logic)
   Future<void> fetchArticles() async {
     // Simulate fetching data from API or database
     _articles = [
-      Article(
+      ArticleBox(
         title: "Sample Article",
         author: "John Doe",
         content: "This is a sample article content.",
@@ -22,16 +23,16 @@ class ArticleProvider extends ChangeNotifier {
   }
 
   // Getter for articles
-  List<Article> get articles => _articles;
+  List<ArticleBox> get articles => _articles;
 
   // Method to add new article
-  void addArticle(Article article) {
+  void addArticle(ArticleBox article) {
     _articles.add(article);
     notifyListeners(); // Notify listeners after data is updated
   }
 
   // Method to update existing article
-  void updateArticle(Article updatedArticle) {
+  void updateArticle(ArticleBox updatedArticle) {
     // Find and update the article in the list
     final index = _articles.indexWhere((article) => article.title == updatedArticle.title);
     if (index != -1) {
@@ -41,7 +42,7 @@ class ArticleProvider extends ChangeNotifier {
   }
 
   // Method to delete article
-  void deleteArticle(Article article) {
+  void deleteArticle(ArticleBox article) {
     _articles.remove(article);
     notifyListeners(); // Notify listeners after data is updated
   }

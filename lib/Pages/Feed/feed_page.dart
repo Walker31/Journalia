@@ -2,10 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:journalia/Widgets/header.dart';
 import 'package:logger/logger.dart';
+import '../../Backend/data.dart';
 import '../../colors.dart';
-import '../../Models/article.dart';
+import 'package:journalia/Models/article_box.dart';
 import '../../Widgets/base_scaffold.dart';
 import 'article_card.dart';
+
 
 class FeedPage extends StatefulWidget {
   const FeedPage({super.key});
@@ -17,6 +19,7 @@ class FeedPage extends StatefulWidget {
 class FeedPageState extends State<FeedPage> {
   int currentTopicIndex = 0;
   Logger logger = Logger();
+  List<ArticleBox> currentArticles = []; // Updated to store fetched articles
 
   final List<String> topics = [
     "Random",
@@ -29,67 +32,30 @@ class FeedPageState extends State<FeedPage> {
     "Politics"
   ];
 
-  final Map<String, List<Article>> articles = {
-    "Clubs": [
-      Article(
-          title: "How Bad do you hate your College?",
-          author: "Krishna",
-          content:
-              "Ahh it’s the worst place you can be at, Firstly the climate here is horrible and don’t even get me started at the mess food. The minute you take a bite in, you will feel like puking...",
-          upVotes: 345,
-          downVotes: 22,
-          comments: []),
-      // Add more articles for Clubs
-    ],
-    "Random": [
-      Article(
-          title: "Upcoming Tech Fest",
-          author: "John Doe",
-          content:
-              "Join us for the annual tech fest with exciting events and competitions...",
-          upVotes: 345,
-          downVotes: 22,
-          comments: []),
-      // Add more articles for Events
-    ],
-    "Resource Sharing": [
-      Article(
-          title: "Exam Preparation Tips",
-          author: "Jane Doe",
-          content:
-              "Here are some tips to help you prepare for the upcoming exams...",
-          upVotes: 345,
-          downVotes: 22,
-          comments: []),
-      // Add more articles for Academics
-    ],
-    "Sports": [
-      Article(
-          title: "Inter-College Football Tournament",
-          author: "Alex",
-          content:
-              "Get ready for the inter-college football tournament starting next week...",
-          upVotes: 345,
-          downVotes: 22,
-          comments: []),
-      // Add more articles for Sports
-    ],
-    "Cultural": [
-      Article(
-          title: "Cultural Fest Highlights",
-          author: "Mary",
-          content:
-              "The cultural fest was a grand success with various performances...",
-          upVotes: 345,
-          downVotes: 22,
-          comments: []),
-      // Add more articles for Cultural
-    ],
-  };
+  @override
+  void initState() {
+    super.initState();
+    fetchArticlesForCurrentTopic(); // Fetch articles when the page initializes
+  }
+
+  void fetchArticlesForCurrentTopic() async {
+    try {
+      List<ArticleBox> fetchedArticles =
+          await fetchArticleBoxesByTopicId(currentTopicIndex + 1); // +1 because topicId starts from 1
+
+      setState(() {
+        currentArticles = fetchedArticles;
+      });
+    } catch (e) {
+      logger.e('Error fetching articles: $e');
+      // Handle error (e.g., show error message to the user)
+    }
+  }
 
   void _nextTopic() {
     setState(() {
       currentTopicIndex = (currentTopicIndex + 1) % topics.length;
+      fetchArticlesForCurrentTopic(); // Fetch articles when topic changes
     });
   }
 
@@ -97,13 +63,13 @@ class FeedPageState extends State<FeedPage> {
     setState(() {
       currentTopicIndex =
           (currentTopicIndex - 1 + topics.length) % topics.length;
+      fetchArticlesForCurrentTopic(); // Fetch articles when topic changes
     });
   }
 
   @override
   Widget build(BuildContext context) {
     String currentTopic = topics[currentTopicIndex];
-    List<Article> currentArticles = articles[currentTopic] ?? [];
 
     return BaseScaffold(
       body: Column(
@@ -122,58 +88,57 @@ class FeedPageState extends State<FeedPage> {
                 fillColor: accentColor.withOpacity(0.1),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
-                  borderSide: const BorderSide(color: Colors.white, width: 6.0),
+                  borderSide:
+                      const BorderSide(color: Colors.white, width: 6.0),
                 ),
               ),
             ),
           ),
           Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Text(" "),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      IconButton(
-                        icon: const RotatedBox(
-                          quarterTurns: 2,
-                          child: Icon(
-                            Icons.double_arrow,
-                            color: textColor,
-                          ),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Text(" "),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    IconButton(
+                      icon: const RotatedBox(
+                        quarterTurns: 2,
+                        child: Icon(
+                          Icons.double_arrow,
+                          color: textColor,
                         ),
-                        onPressed: _previousTopic,
                       ),
-                      Text(
-                        currentTopic,
-                        style: const TextStyle(
-                            fontSize: 32,
-                            fontFamily: 'Caveat',
-                            fontWeight: FontWeight.bold,
-                            color: textColor),
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.double_arrow, color: textColor),
-                        onPressed: _nextTopic,
-                      ),
-                    ],
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.more_vert, color: textColor),
-                    onPressed: () {},
-                  ),
-                ],
-              )),
+                      onPressed: _previousTopic,
+                    ),
+                    Text(
+                      currentTopic,
+                      style: const TextStyle(
+                          fontSize: 32,
+                          fontFamily: 'Caveat',
+                          fontWeight: FontWeight.bold,
+                          color: textColor),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.double_arrow, color: textColor),
+                      onPressed: _nextTopic,
+                    ),
+                  ],
+                ),
+                IconButton(
+                  icon: const Icon(Icons.more_vert, color: textColor),
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          ),
           Expanded(
             child: currentArticles.isEmpty
                 ? const Center(
-                    child: Text(
-                      'No articles found',
-                      style: TextStyle(color: textColor, fontSize: 18),
-                    ),
+                    child: CircularProgressIndicator(), // Show loading indicator
                   )
                 : ListView.builder(
                     padding: const EdgeInsets.all(8.0),

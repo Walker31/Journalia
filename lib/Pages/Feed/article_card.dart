@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import '../../Models/article_box.dart';
 import '../../colors.dart';
-import '../../Models/article.dart';
 
 class ArticleCard extends StatefulWidget {
-  final Article article;
+  final ArticleBox article;
 
   const ArticleCard({
     super.key,

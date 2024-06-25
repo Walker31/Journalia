@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:journalia/models/users.dart';
+import '../Models/users.dart';
 
 class UsersProvider extends ChangeNotifier {
-  List<Users> _users = [];
-  Users? currentUser; // Initial list of users
+  List<User> _users = [];
+  User? currentUser; // Initial list of users
 
   // Method to fetch users (replace with actual data fetch logic)
   Future<void> fetchUsers() async {
     // Simulate fetching data from API or database
     _users = [
-      Users(
+      User(
         userId: 1,
         userName: "John Doe",
         email: "john.doe@example.com",
@@ -23,16 +23,16 @@ class UsersProvider extends ChangeNotifier {
   }
 
   // Getter for users
-  List<Users> get users => _users;
+  List<User> get users => _users;
 
   // Method to add a new user
-  void addUser(Users user) {
+  void addUser(User user) {
     _users.add(user);
     notifyListeners(); // Notify listeners after data is updated
   }
 
   void setUserDetails(String userName, String email) {
-    currentUser = Users(
+    currentUser = User(
       userId: _users.length + 1, // Generate a new userId
       userName: userName,
       email: email,
@@ -44,7 +44,7 @@ class UsersProvider extends ChangeNotifier {
   }
 
   // Method to update an existing user
-  void updateUser(Users updatedUser) {
+  void updateUser(User updatedUser) {
     // Find and update the user in the list
     final index = _users.indexWhere((user) => user.userId == updatedUser.userId);
     if (index != -1) {
@@ -54,7 +54,7 @@ class UsersProvider extends ChangeNotifier {
   }
 
   // Method to delete a user
-  void deleteUser(Users user) {
+  void deleteUser(User user) {
     _users.remove(user);
     notifyListeners(); // Notify listeners after data is updated
   }
