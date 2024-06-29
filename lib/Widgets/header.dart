@@ -14,10 +14,12 @@ class CustomHeader extends StatelessWidget {
       children: [
         IconButton(
           onPressed: () {
-            logger.d('Person icon button pressed!');
+            logger.d('Menu icon button pressed!');
+            Scaffold.of(context).openDrawer();
           },
-          icon: const Icon(Icons.person, size: 36),
+          icon: const Icon(Icons.menu, size: 36),
         ),
+        
         const Text(
           "Journalia",
           style: TextStyle(
@@ -28,9 +30,9 @@ class CustomHeader extends StatelessWidget {
         ),
         IconButton(
           onPressed: () {
-            logger.d('Menu icon button pressed!');
+            logger.d('Person icon button pressed!');
           },
-          icon: const Icon(Icons.menu, size: 36),
+          icon: const Icon(Icons.person, size: 36),
         ),
       ],
     );

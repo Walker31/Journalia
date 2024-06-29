@@ -15,6 +15,4 @@ const Color accentColor4 = Color(0xB2004D40); // Semi-transparent Dark Green
 const Color backgroundColor = Color(0xFFE0F2F1);
 const Color cardColor = Color(0xFF004D40);
 const Color textColor = Colors.white;
-const Color accentColor = Color(0xFF80CBC4);
-
-  
+const Color accentColor = Color(0xFF80CBC4); 

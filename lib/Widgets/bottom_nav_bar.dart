@@ -40,6 +40,7 @@ class BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      elevation: 0,
       backgroundColor: secondaryColor,
       selectedItemColor: tertiaryColor,
       unselectedItemColor: accentColor,

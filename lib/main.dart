@@ -15,6 +15,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,9 @@ class MyApp extends StatelessWidget {
         // Add more providers as needed
       ],
       child: MaterialApp(
-        theme: ThemeData.dark(),
+        
+        theme: ThemeData.light(),
+        darkTheme: ThemeData.dark(),
         debugShowCheckedModeBanner: false,
         initialRoute: '/home', // Specify initial route
         routes: {

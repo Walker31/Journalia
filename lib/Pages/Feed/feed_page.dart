@@ -6,6 +6,7 @@ import '../../Backend/data.dart';
 import '../../colors.dart';
 import 'package:journalia/Models/article_box.dart';
 import '../../Widgets/base_scaffold.dart';
+import '../../dummy_data.dart';
 import 'article_card.dart';
 
 
@@ -19,7 +20,7 @@ class FeedPage extends StatefulWidget {
 class FeedPageState extends State<FeedPage> {
   int currentTopicIndex = 0;
   Logger logger = Logger();
-  List<ArticleBox> currentArticles = []; // Updated to store fetched articles
+  List<ArticleBox> currentArticles = generateDummyArticles(); // Updated to store fetched articles
 
   final List<String> topics = [
     "Random",

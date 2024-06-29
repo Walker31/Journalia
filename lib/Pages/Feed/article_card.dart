@@ -84,13 +84,18 @@ class ArticleCardState extends State<ArticleCard> {
             if (widget.article.author.isNotEmpty)
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
-                child: Text(
-                  "- ${widget.article.author}",
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: accentColor,
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      "- ${widget.article.author}",
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: accentColor,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             const SizedBox(height: 10),
