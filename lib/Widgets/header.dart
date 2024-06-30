@@ -21,7 +21,7 @@ class CustomHeader extends StatelessWidget {
         ),
         
         const Text(
-          "Journalia",
+          "JOURNALIA",
           style: TextStyle(
             color: Colors.black,
             fontFamily: 'Caveat',

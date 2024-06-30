@@ -10,20 +10,30 @@ class Carousel extends StatefulWidget {
 class CarouselState extends State<Carousel> {
   final String buildingPath = 'assets/Buildings/B1_top.png';
 
+  List<String> hostels = ["Aqua", "Opal" , "Agate", "Garnet" , "Amber", "Topaz","Coral", "Beryl"];
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 250, // Adjust the height to fit within the parent constraints
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: 5,
-        itemBuilder: (context, index) {
-          return BuildingListTile(
-            imagePath: buildingPath,
-            title: 'Building ${index + 1}',
-            index: index,
-          );
-        },
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey, width: 2.0),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      margin: const EdgeInsets.all(16.0),
+      child: SizedBox(
+        height: 250, // Adjust the height to fit within the parent constraints
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: null,
+          itemBuilder: (context, index) {
+            String title=hostels[index% hostels.length];
+            return BuildingListTile(
+              imagePath: buildingPath,
+              title: title,
+              index: index,
+            );
+          },
+        ),
       ),
     );
   }
@@ -52,10 +62,10 @@ class BuildingListTile extends StatelessWidget {
             ? [
                 Text(title, textAlign: TextAlign.center),
                 const SizedBox(height: 10),
-                Image.asset(imagePath, height: 100, width: 100, fit: BoxFit.cover),
+                const Icon(Icons.holiday_village),
               ]
             : [
-                Image.asset(imagePath, height: 100, width: 100, fit: BoxFit.cover),
+                const Icon(Icons.holiday_village),
                 const SizedBox(height: 10),
                 Text(title, textAlign: TextAlign.center),
               ],

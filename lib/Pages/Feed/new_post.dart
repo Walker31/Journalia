@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:journalia/Widgets/base_scaffold.dart';
 import 'package:logger/logger.dart';
 
+import '../../colors.dart';
+
 class CreatePostPage extends StatefulWidget {
   const CreatePostPage({super.key});
 
@@ -55,7 +57,7 @@ class CreatePostPageState extends State<CreatePostPage> {
                     fontSize: 24.0,
                     fontFamily: 'Caveat',
                     fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                    color: primaryTextColor,
                   ),
                 ),
                 Align(
@@ -92,24 +94,24 @@ class CreatePostPageState extends State<CreatePostPage> {
                     controller: titleController,
                     decoration: const InputDecoration(
                       hintText: 'An Interesting title',
-                      hintStyle: TextStyle(color: Colors.black),
+                      hintStyle: TextStyle(color: primaryTextColor),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       ),
                     ),
-                    style: const TextStyle(color: Colors.black),
+                    style: const TextStyle(color: primaryTextColor),
                   ),
                   const SizedBox(height: 10.0),
                   TextField(
                     controller: contentController,
                     decoration: const InputDecoration(
                       hintText: 'Your text post (optional)',
-                      hintStyle: TextStyle(color: Colors.black),
+                      hintStyle: TextStyle(color: primaryTextColor),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       ),
                     ),
-                    style: const TextStyle(color: Colors.black),
+                    style: const TextStyle(color: primaryTextColor),
                     maxLines: 5,
                   ),
                   const SizedBox(height: 20.0),
@@ -192,7 +194,7 @@ class CreatePostPageState extends State<CreatePostPage> {
       padding: const EdgeInsets.all(8.0),
       child: Row(
         children: [
-          const Text("Mark as: ", style: TextStyle(color: Colors.black)),
+          const Text("Mark as: ", style: TextStyle(color: primaryTextColor)),
           const SizedBox(width: 8.0),
           ElevatedButton(
             style: ElevatedButton.styleFrom(

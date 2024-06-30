@@ -3,7 +3,6 @@ import 'package:journalia/Pages/Home/carousel.dart';
 import 'package:journalia/Widgets/base_scaffold.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
-
 import '../../Providers/user_provider.dart';
 import '../../Widgets/header.dart';
 
@@ -25,10 +24,13 @@ class HomePageState extends State<HomePage> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 40),
-              CustomHeader(),
-              const SizedBox(height: 25),
+              // Adds top padding to avoid overlapping with status bar
+              SizedBox(height: MediaQuery.of(context).padding.top + 16), 
+              // Custom header widget
+              CustomHeader(), 
+              const SizedBox(height: 25), // Adds space between header and next widget
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
@@ -37,6 +39,7 @@ class HomePageState extends State<HomePage> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        // Gradient text saying "Hey"
                         ShaderMask(
                           shaderCallback: (bounds) => const LinearGradient(
                             colors: [
@@ -56,6 +59,7 @@ class HomePageState extends State<HomePage> {
                             ),
                           ),
                         ),
+                        // Displays the current user's name or "Guest"
                         Consumer<UsersProvider>(
                           builder: (context, usersProvider, child) {
                             final userName =
@@ -72,6 +76,7 @@ class HomePageState extends State<HomePage> {
                         ),
                       ],
                     ),
+                    // Circular container with "Streaks" text
                     IntrinsicWidth(
                       child: Container(
                         padding: const EdgeInsets.all(16.0),
@@ -92,10 +97,11 @@ class HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 25), // Adds space between rows
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  // Home button
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
@@ -125,6 +131,7 @@ class HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
+                  // Communities button
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
@@ -158,8 +165,17 @@ class HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-              const SizedBox(height: 25),
-              const Carousel()
+              const SizedBox(height: 25), // Adds space before Carousel
+              // Carousel widget
+              const SizedBox(
+                height: 250, // Height for the Carousel widget
+                child: Carousel(),
+              ),
+              const SizedBox(height: 25), // Adjust as needed
+              // Placeholder for additional content
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.3, // Height for the empty space
+              ),
             ],
           ),
         ),
