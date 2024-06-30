@@ -32,6 +32,7 @@ class CustomHeader extends StatelessWidget {
         IconButton(
           onPressed: () {
             logger.d('Person icon button pressed!');
+            Navigator.pushNamed(context,'/profile');
           },
           icon: const CircleAvatar(backgroundImage: AssetImage('assets/Profile.png'),)
         ),

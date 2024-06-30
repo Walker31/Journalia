@@ -8,9 +8,11 @@ class Carousel extends StatefulWidget {
 }
 
 class CarouselState extends State<Carousel> {
-  final String buildingPath = 'assets/Buildings/B1_top.png';
+  final String buildingPath = 'assets/Profile.png';
 
-  List<String> hostels = ["Aqua", "Opal" , "Agate", "Garnet" , "Amber", "Topaz","Coral", "Beryl"];
+  final List<String> hostels = [
+    "Aqua", "Opal", "Agate", "Garnet", "Amber", "Topaz", "Coral", "Beryl"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +21,12 @@ class CarouselState extends State<Carousel> {
         border: Border.all(color: Colors.grey, width: 2.0),
         borderRadius: BorderRadius.circular(10),
       ),
-      margin: const EdgeInsets.all(16.0),
+      margin: const EdgeInsets.all(8.0),
       child: SizedBox(
-        height: 250, // Adjust the height to fit within the parent constraints
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: null,
           itemBuilder: (context, index) {
-            String title=hostels[index% hostels.length];
+            String title = hostels[index % hostels.length];
             return BuildingListTile(
               imagePath: buildingPath,
               title: title,
@@ -54,7 +54,7 @@ class BuildingListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150, // Set a width for the container to ensure proper horizontal scrolling
+      width: 150,
       margin: const EdgeInsets.all(8.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -62,10 +62,10 @@ class BuildingListTile extends StatelessWidget {
             ? [
                 Text(title, textAlign: TextAlign.center),
                 const SizedBox(height: 10),
-                const Icon(Icons.holiday_village),
+                Image.asset(imagePath),
               ]
             : [
-                const Icon(Icons.holiday_village),
+                Image.asset(imagePath),
                 const SizedBox(height: 10),
                 Text(title, textAlign: TextAlign.center),
               ],

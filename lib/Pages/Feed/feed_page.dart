@@ -96,7 +96,7 @@ class FeedPageState extends State<FeedPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 4.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -122,6 +122,8 @@ class FeedPageState extends State<FeedPage> {
                             fontFamily: 'Caveat',
                             fontWeight: FontWeight.bold,
                             color: textColor),
+                            textAlign: TextAlign.center,
+                            overflow: TextOverflow.ellipsis,
                       ),
                       IconButton(
                         icon: const Icon(Icons.double_arrow, color: textColor),

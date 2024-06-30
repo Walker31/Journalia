@@ -40,123 +40,126 @@ class CreatePostPageState extends State<CreatePostPage> {
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 25),
-            PostHeader(),
-            const SizedBox(height: 25),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Create Post',
-                  style: TextStyle(
-                    fontSize: 24.0,
-                    fontFamily: 'Caveat',
-                    fontWeight: FontWeight.bold,
-                    color: primaryTextColor,
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: OutlinedButton(
-                    onPressed: () {
-                      // Open drafts
-                    },
-                    style: TextButton.styleFrom(
-                      backgroundColor: Colors.purple.withOpacity(0.1),
-                    ),
-                    child: const Text(
-                      'My Drafts',
-                      style: TextStyle(color: Colors.purpleAccent),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20.0),
-            _buildCommunityDropdown(),
-            const SizedBox(height: 20.0),
-            
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Colors.white,
-              ),
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TextField(
-                    controller: titleController,
-                    decoration: const InputDecoration(
-                      hintText: 'An Interesting title',
-                      hintStyle: TextStyle(color: primaryTextColor),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                PostHeader(),
+                const SizedBox(height: 25),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Create Post',
+                      style: TextStyle(
+                        fontSize: 24.0,
+                        fontFamily: 'Caveat',
+                        fontWeight: FontWeight.bold,
+                        color: primaryTextColor,
                       ),
                     ),
-                    style: const TextStyle(color: primaryTextColor),
-                  ),
-                  const SizedBox(height: 10.0),
-                  TextField(
-                    controller: contentController,
-                    decoration: const InputDecoration(
-                      hintText: 'Your text post (optional)',
-                      hintStyle: TextStyle(color: primaryTextColor),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                      ),
-                    ),
-                    style: const TextStyle(color: primaryTextColor),
-                    maxLines: 5,
-                  ),
-                  const SizedBox(height: 20.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _buildCategoryDropdown(),
-                      IconButton(
-                        icon: const Icon(Icons.image),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: OutlinedButton(
                         onPressed: () {
-                          // Add image
+                          // Open drafts
                         },
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.purple.withOpacity(0.1),
+                        ),
+                        child: const Text(
+                          'My Drafts',
+                          style: TextStyle(color: Colors.purpleAccent),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20.0),
+                _buildCommunityDropdown(),
+                const SizedBox(height: 20.0),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.white,
+                  ),
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextField(
+                        controller: titleController,
+                        decoration: const InputDecoration(
+                          hintText: 'An Interesting title',
+                          hintStyle: TextStyle(color: primaryTextColor),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                          ),
+                        ),
+                        style: const TextStyle(color: primaryTextColor),
+                      ),
+                      const SizedBox(height: 10.0),
+                      TextField(
+                        controller: contentController,
+                        decoration: const InputDecoration(
+                          hintText: 'Your text post (optional)',
+                          hintStyle: TextStyle(color: primaryTextColor),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                          ),
+                        ),
+                        style: const TextStyle(color: primaryTextColor),
+                        maxLines: 5,
+                      ),
+                      const SizedBox(height: 20.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          _buildCategoryDropdown(),
+                          IconButton(
+                            icon: const Icon(Icons.image),
+                            onPressed: () {
+                              // Add image
+                            },
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    // Save draft
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                  ),
-                  child: const Text('Save Draft'),
                 ),
-                const SizedBox(width: 16),
-                ElevatedButton(
-                  onPressed: () {
-                    // Post
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                  ),
-                  child: const Text('Post'),
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        // Save draft
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                      ),
+                      child: const Text('Save Draft'),
+                    ),
+                    const SizedBox(width: 16),
+                    ElevatedButton(
+                      onPressed: () {
+                        // Post
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                      ),
+                      child: const Text('Post'),
+                    ),
+                  ],
                 ),
+                const SizedBox(height: 100,)
               ],
+              
             ),
-            const SizedBox(height: 20.0),
-          ],
+          ),
         ),
       ),
     );
@@ -164,6 +167,7 @@ class CreatePostPageState extends State<CreatePostPage> {
 
   Widget _buildCommunityDropdown() {
     return DropdownButtonFormField<String>(
+      dropdownColor: Colors.grey.shade700,
       value: selectedCommunity,
       decoration: InputDecoration(
         border: OutlineInputBorder(
@@ -263,4 +267,3 @@ class PostHeader extends StatelessWidget {
     );
   }
 }
-

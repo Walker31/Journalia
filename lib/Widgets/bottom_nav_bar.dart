@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import '../../colors.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -9,8 +10,9 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class BottomNavBarState extends State<BottomNavBar> {
-  int _selectedIndex = 0;
-
+  int _selectedIndex = 2;
+  Logger logger=Logger();
+  
   void _onItemTapped(int index) {
     // Handle navigation based on the selected index
     switch (index) {
@@ -26,10 +28,14 @@ class BottomNavBarState extends State<BottomNavBar> {
       case 3:
         Navigator.pushNamed(context, '/profile');
         break;
+      case 4:
+        Navigator.pushNamed(context, '/login');
+        break;
     }
     // Update selected index after navigation
     setState(() {
       _selectedIndex = index;
+      logger.d('Selected Index changed to: $_selectedIndex');
     });
   }
 
@@ -41,15 +47,26 @@ class BottomNavBarState extends State<BottomNavBar> {
       unselectedItemColor: accentColor,
       currentIndex: _selectedIndex,
       onTap: _onItemTapped,
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.feed), label: 'Feed'),
+      items: [
+        const BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+        const BottomNavigationBarItem(icon: Icon(Icons.feed), label: 'Feed'),
         BottomNavigationBarItem(
-          icon: Icon(Icons.add),
+          icon: Container(
+            width: 32,
+            height: 32,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.white,
+            ),
+            child: const Center(
+              child: Icon(Icons.add, color: Colors.black),
+            ),
+            
+          ),
           label: 'Create Post',
-          backgroundColor: Colors.white,
         ),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        const BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Profile'),
+        const BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
       ],
     );
   }

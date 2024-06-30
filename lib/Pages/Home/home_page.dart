@@ -30,7 +30,7 @@ class HomePageState extends State<HomePage> {
               SizedBox(height: MediaQuery.of(context).padding.top + 16), 
               // Custom header widget
               CustomHeader(), 
-              const SizedBox(height: 25), // Adds space between header and next widget
+              const SizedBox(height: 10), // Adds space between header and next widget
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
@@ -97,7 +97,7 @@ class HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              const SizedBox(height: 25), // Adds space between rows
+              const SizedBox(height: 10), // Adds space between rows
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
