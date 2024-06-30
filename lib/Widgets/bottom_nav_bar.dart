@@ -1,4 +1,3 @@
-// bottom_nav_bar.dart
 import 'package:flutter/material.dart';
 import '../../colors.dart';
 
@@ -13,35 +12,31 @@ class BottomNavBarState extends State<BottomNavBar> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
     // Handle navigation based on the selected index
     switch (index) {
       case 0:
-        // Navigate to Home
         Navigator.pushNamed(context, '/home');
         break;
       case 1:
-        // Navigate to Explore
         Navigator.pushNamed(context, '/feed');
         break;
       case 2:
-        // Navigate to Library
-        Navigator.pushNamed(context, '/sample');
+        Navigator.pushNamed(context, '/createpost');
         break;
       case 3:
-        // Navigate to Profile
         Navigator.pushNamed(context, '/profile');
         break;
     }
+    // Update selected index after navigation
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       elevation: 0,
-      backgroundColor: secondaryColor,
       selectedItemColor: tertiaryColor,
       unselectedItemColor: accentColor,
       currentIndex: _selectedIndex,
@@ -49,7 +44,11 @@ class BottomNavBarState extends State<BottomNavBar> {
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
         BottomNavigationBarItem(icon: Icon(Icons.feed), label: 'Feed'),
-        BottomNavigationBarItem(icon: Icon(Icons.library_books), label: 'Library'),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.add),
+          label: 'Create Post',
+          backgroundColor: Colors.white,
+        ),
         BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
       ],
     );

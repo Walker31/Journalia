@@ -1,128 +1,66 @@
 import 'Models/article_box.dart';
 
-List<ArticleBox> generateDummyArticles() {
-  return [
-    ArticleBox(
-      title: 'Flutter Widgets Overview',
-      author: 'John Doe',
-      content:
-          'This is a detailed overview of different Flutter widgets and their usage.',
-      upVotes: 15,
-      downVotes: 3,
-      comments: [
-        'Great article!',
-        'I found this really helpful.',
-        'Could use more examples.',
-      ],
-    ),
-    ArticleBox(
-      title: 'State Management in Flutter',
-      author: 'Jane Smith',
-      content:
-          'Learn how to manage state effectively in your Flutter applications.',
-      upVotes: 10,
-      downVotes: 2,
-      comments: [
-        'Very informative!',
-        'Could you explain more about provider?',
-      ],
-    ),
-    ArticleBox(
-      title: 'Advanced Dart Features',
-      author: 'Alex Johnson',
-      content:
-          'Explore advanced Dart language features like mixins, generics, and more.',
-      upVotes: 20,
-      downVotes: 1,
-      comments: [
-        'This helped me understand generics better.',
-        'Can you write about async programming next?',
-      ],
-    ),
-    ArticleBox(
-      title: 'Flutter Animations Deep Dive',
-      author: 'Emily Brown',
-      content:
-          'Deep dive into Flutter animations with examples and best practices.',
-      upVotes: 18,
-      downVotes: 0,
-      comments: [
-        'Animations are so cool!',
-        'Could you cover staggered animations too?',
-      ],
-    ),
-    ArticleBox(
-      title: 'Effective UI Design Principles',
-      author: 'David Lee',
-      content:
-          'Learn about effective UI design principles and how to apply them.',
-      upVotes: 25,
-      downVotes: 5,
-      comments: [
-        'This changed the way I design!',
-        'More examples would be great.',
-      ],
-    ),
-    ArticleBox(
-      title: 'Firebase Integration with Flutter',
-      author: 'Sarah Johnson',
-      content:
-          'Integrate Firebase services like Firestore and Authentication in Flutter.',
-      upVotes: 12,
-      downVotes: 2,
-      comments: [
-        'Firebase is awesome!',
-        'Could you explain Firebase Realtime Database too?',
-      ],
-    ),
-    ArticleBox(
-      title: 'Responsive Design in Flutter',
-      author: 'Michael White',
-      content:
-          'Design responsive Flutter applications for various screen sizes.',
-      upVotes: 16,
-      downVotes: 3,
-      comments: [
-        'Very helpful for cross-platform apps!',
-        'How about handling landscape orientation?',
-      ],
-    ),
-    ArticleBox(
-      title: 'Testing Strategies in Flutter',
-      author: 'Lisa Green',
-      content:
-          'Implement effective testing strategies for Flutter applications.',
-      upVotes: 14,
-      downVotes: 1,
-      comments: [
-        'Testing is crucial!',
-        'Could you cover unit testing in more detail?',
-      ],
-    ),
-    ArticleBox(
-      title: 'Flutter vs. React Native Comparison',
-      author: 'Mark Anderson',
-      content:
-          'Compare Flutter and React Native frameworks for mobile app development.',
-      upVotes: 22,
-      downVotes: 4,
-      comments: [
-        'Interesting comparison!',
-        'What about performance differences?',
-      ],
-    ),
-    ArticleBox(
-      title: 'CI/CD Pipelines in Mobile App Development',
-      author: 'Sophia Clark',
-      content:
-          'Set up Continuous Integration and Deployment pipelines for mobile apps.',
-      upVotes: 19,
-      downVotes: 2,
-      comments: [
-        'CI/CD is a game-changer!',
-        'Could you explain Jenkins integration too?',
-      ],
-    ),
-    // Add more dummy articles as needed
-  ];
+List<ArticleBox> generateDummyArticles(int topicIndex) {
+  switch (topicIndex) {
+    case 0: // Random
+      return [
+        ArticleBox(
+          title: 'Random Article 1',
+          author: 'John Doe',
+          content: 'Random content for article 1.',
+          upVotes: 10,
+          downVotes: 2,
+          comments: ['Comment 1', 'Comment 2'],
+        ),
+        ArticleBox(
+          title: 'Random Article 2',
+          author: 'Jane Smith',
+          content: 'Random content for article 2.',
+          upVotes: 8,
+          downVotes: 1,
+          comments: ['Comment 1', 'Comment 2', 'Comment 3'],
+        ),
+      ];
+    case 1: // Raising Issues
+      return [
+        ArticleBox(
+          title: 'Issue 1',
+          author: 'John Doe',
+          content: 'Content for issue 1.',
+          upVotes: 15,
+          downVotes: 3,
+          comments: ['Issue comment 1'],
+        ),
+        ArticleBox(
+          title: 'Issue 2',
+          author: 'Jane Smith',
+          content: 'Content for issue 2.',
+          upVotes: 12,
+          downVotes: 2,
+          comments: ['Issue comment 1', 'Issue comment 2'],
+        ),
+      ];
+    case 2: // Resource Sharing
+      return [
+        ArticleBox(
+          title: 'Resource Sharing 1',
+          author: 'Alex Johnson',
+          content: 'Content for resource sharing 1.',
+          upVotes: 20,
+          downVotes: 1,
+          comments: ['Resource comment 1'],
+        ),
+        ArticleBox(
+          title: 'Resource Sharing 2',
+          author: 'Emily Brown',
+          content: 'Content for resource sharing 2.',
+          upVotes: 18,
+          downVotes: 0,
+          comments: ['Resource comment 1', 'Resource comment 2'],
+        ),
+      ];
+    // Add cases for other topics as needed
+    default:
+      return []; // Empty list as default
+  }
 }

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:journalia/Pages/Feed/feed_page.dart';
+import 'package:journalia/Pages/Feed/new_post.dart';
 import 'package:journalia/Pages/Home/home_page.dart'; // Import the sample page
-import 'package:journalia/Pages/Home/samle.dart';
 import 'package:journalia/Pages/Login/login_page.dart';
 import 'package:journalia/providers/article_provider.dart';
 import 'package:provider/provider.dart';
+import 'Pages/Profile/profile.dart';
 import 'Providers/topic_provider.dart';
 import 'Providers/user_provider.dart';
 import 'Providers/vote_provider.dart';
@@ -37,7 +38,8 @@ class MyApp extends StatelessWidget {
           '/login': (context) => const Login(),
           '/home': (context) => const HomePage(),
           '/feed': (context) => const FeedPage(),
-          '/sample': (context) => const Page1() // Add the sample page route
+          '/createpost':(context) => const CreatePostPage(),
+          '/profile':(context) => const Profile(),
           // Add more routes as needed
         },
       ),

@@ -17,12 +17,13 @@ class CustomHeader extends StatelessWidget {
             logger.d('Menu icon button pressed!');
             Scaffold.of(context).openDrawer();
           },
-          icon: const Icon(Icons.menu, size: 36),
+          icon: const Icon(Icons.menu, size: 36,color: Colors.black,),
         ),
         
         const Text(
           "Journalia",
           style: TextStyle(
+            color: Colors.black,
             fontFamily: 'Caveat',
             fontWeight: FontWeight.bold,
             fontSize: 48,
@@ -32,7 +33,7 @@ class CustomHeader extends StatelessWidget {
           onPressed: () {
             logger.d('Person icon button pressed!');
           },
-          icon: const Icon(Icons.person, size: 36),
+          icon: const CircleAvatar(backgroundImage: AssetImage('assets/Profile.png'),)
         ),
       ],
     );

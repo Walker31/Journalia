@@ -99,6 +99,10 @@ class ArticleCardState extends State<ArticleCard> {
                 ),
               ),
             const SizedBox(height: 10),
+            //Image.asset(
+            //'Dummy_image.png'
+            //),
+            //const SizedBox(height: 10),
             Text(
               widget.article.content,
               style: const TextStyle(
