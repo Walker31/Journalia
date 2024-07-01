@@ -1,5 +1,5 @@
-// bottom_nav_bar.dart
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import '../../colors.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -10,46 +10,66 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class BottomNavBarState extends State<BottomNavBar> {
-  int _selectedIndex = 0;
-
+  int _selectedIndex = 2;
+  Logger logger=Logger();
+  
   void _onItemTapped(int index) {
+
     setState(() {
       _selectedIndex = index;
+      logger.d('Selected Index changed to: $_selectedIndex');
     });
     // Handle navigation based on the selected index
     switch (index) {
       case 0:
-        // Navigate to Home
-        Navigator.pushNamed(context, '/home');
+        Navigator.of(context).pushNamed('/home');
         break;
       case 1:
-        // Navigate to Explore
-        Navigator.pushNamed(context, '/feed');
+        Navigator.of(context).pushNamed('/feed');
         break;
       case 2:
-        // Navigate to Library
-        Navigator.pushNamed(context, '/sample');
+        Navigator.of(context).pushNamed('/createpost');
         break;
       case 3:
-        // Navigate to Profile
-        Navigator.pushNamed(context, '/profile');
+        Navigator.of(context).pushNamed('/profile');
+        break;
+      case 4:
+        Navigator.of(context).pushNamed('/login');
         break;
     }
+    // Update selected index after navigation
+    
   }
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: secondaryColor,
+      backgroundColor: Colors.transparent,
+      elevation: 0,
       selectedItemColor: tertiaryColor,
       unselectedItemColor: accentColor,
       currentIndex: _selectedIndex,
       onTap: _onItemTapped,
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.feed), label: 'Feed'),
-        BottomNavigationBarItem(icon: Icon(Icons.library_books), label: 'Library'),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+      items: [
+        const BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: 'Home'),
+        const BottomNavigationBarItem(icon: Icon(Icons.feed), label: 'Feed'),
+        BottomNavigationBarItem(
+          icon: Container(
+            width: 32,
+            height: 32,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.white,
+            ),
+            child: const Center(
+              child: Icon(Icons.add, color: Colors.black),
+            ),
+            
+          ),
+          label: 'Create Post',
+        ),
+        const BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Profile'),
+        const BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: 'Profile'),
       ],
     );
   }
