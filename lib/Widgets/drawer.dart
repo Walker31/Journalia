@@ -28,7 +28,7 @@ class CustomDrawerState extends State<CustomDrawer> {
             title: const Text('Settings'),
             trailing: const Icon(Icons.settings),
             onTap: () {
-              // Handle the tap event
+              Navigator.pop(context);
             },
           ),
           Padding(

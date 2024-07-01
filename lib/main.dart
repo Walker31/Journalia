@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:journalia/Pages/Feed/feed_page.dart';
-import 'package:journalia/Pages/Feed/new_post.dart';
+import 'package:journalia/Pages/NewPost.dart/new_post.dart';
 import 'package:journalia/Pages/Home/home_page.dart'; // Import the sample page
 import 'package:journalia/Pages/Login/auth_page.dart';
+import 'package:journalia/Pages/splash_screen.dart';
 import 'package:journalia/providers/article_provider.dart';
 import 'package:provider/provider.dart';
 import 'Pages/Profile/profile.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData.dark(),
         darkTheme: ThemeData.dark(),
         debugShowCheckedModeBanner: false,
-        initialRoute: '/home', // Specify initial route
+        home: const Splash(), // Specify initial route
         routes: {
           '/login': (context) => const AuthPage(),
           '/home': (context) => const HomePage(),
